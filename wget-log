@@ -1,0 +1,11 @@
+--2025-09-05 13:43:46--  https://raw.githubusercontent.com/fusionpbx/fusionpbx-install.sh/master/debian/pre-install.sh
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.110.133, 185.199.108.133, 185.199.109.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.110.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 377 [text/plain]
+Saving to: ‘STDOUT’
+
+-                                                0%[                                                                                                  ]       0  --.-KB/s               -                                              100%[=================================================================================================>]     377  --.-KB/s    in 0s      
+
+2025-09-05 13:43:47 (17.4 MB/s) - written to stdout [377/377]
+
