@@ -1,50 +1,64 @@
-# Mastering-FreeSWITCH
-Setup guide for FreeSWITCH, FusionPBX and projects
-=======
-# FusionPBX Installation Documentation
-## System Details
-- Ubuntu 24.04.2 LTS (GNU/Linux 6.14.0-24-generic x86_64)
-- Date: Fri Sep 5 01:30:13 PM UTC 2025
-- IP: 192.168.1.6
-## Installation Steps
-1. Updated and upgraded system: `sudo apt update && sudo apt upgrade -y`
-2. Ran pre-install script: `sudo wget -O - https://raw.githubusercontent.com/fusionpbx/fusionpbx-install.sh/master/ubuntu/pre-install.sh | sudo sh`
-3. Navigated to directory: `cd /usr/src/fusionpbx-install.sh/ubuntu`
-Note: Install as per the OS: centos  debian  devuan  freebsd  ubuntu  windows
-4. Ran install script: `sudo ./install.sh`
-## Notes
-- System restart was required and applied.
-- GitHub linked via SSH key.
-- Add updates here as you proceed (e.g., configuration changes).
+# README.md - Mastering FreeSWITCH on Ubuntu 24.04/22.04 LTS
+## Project Status: Phase 1 - FreeSWITCH Standalone Complete ✅
 
-## Post-Installation Verification Steps
+### System Information
+- **Operating System**: Ubuntu 24.04.2 LTS (GNU/Linux 6.14.0-24-generic x86_64)
+- **FreeSWITCH Version**: 1.10.12-release (verified running)
+- **Installation Date**: September 5, 2025
+- **Server IP**: 192.168.1.6
+- **GitHub Repository**: [Mastering-FreeSWITCH](https://github.com/S-V-J/Mastering-FreeSWITCH)
 
-1. Check FreeSWITCH status:
-   ```
-   sudo fs_cli -x 'version'
-   ```
+## Completed Tasks
+### ✅ Phase 1A: System Preparation
+- [x] Full system update & upgrade  (`sudo apt update && sudo apt upgrade -y`)
+- [x] SSH key generation and GitHub linking
+- [x] User "voip_sid" created; systemd ready for FreeSWITCH
 
-2. Access the FusionPBX web interface:
-   - Open a web browser and go to `http://192.168.1.6` (replace with your server IP).
-   - Log in with the administrator credentials set during installation.
+### ✅ Phase 1B: FreeSWITCH Installation
+- [x] Downloaded and installed FreeSWITCH 1.10.12 from SignalWire / source
+- [x] Verified FreeSWITCH version via `freeswitch -version`
+- [x] Enabled and started FreeSWITCH with `systemctl`
+- [x] Confirmed running state (`systemctl status freeswitch`, `fs_cli` CLI access)
 
-3. Check logs for troubleshooting:
-   - FreeSWITCH log: `tail -f /var/log/freeswitch/freeswitch.log`
-   - Nginx error log: `tail -f /var/log/nginx/error.log`
+#### FreeSWITCH Running Output
+```bash
+$ freeswitch -version
+FreeSWITCH version: 1.10.12-release... (git d8481a9 2025-01-13 ... 64bit)
+$ sudo systemctl status freeswitch
+● freeswitch.service - freeswitch
+ Active: active (running)
+$ fs_cli
+# FreeSWITCH CLI appears. Status: running, 0 sessions since startup
+```
 
-4. Secure your installation:
-   - Enable HTTPS with Let's Encrypt or another certificate provider.
-   - Configure the firewall to allow necessary ports:
-     ```
-     sudo ufw allow 80,443,5060/tcp
-     sudo ufw enable
-     ```
-   - Consider installing and configuring Fail2Ban to prevent brute-force attacks.
+### 🌟 Phase 1C: Foundation Configuration (SIP)
+- [ ] **To Do**: Basic SIP profile and extensions XML setup
+  - `/etc/freeswitch/sip_profiles/internal.xml` and `/etc/freeswitch/directory/default/`
+  - Secure RTP port range configured in `vars.xml`
+  - `fs_cli -x "reloadxml"` for config reload
 
-## GitHub Repository Linking Notes
+### 🔒 Security Considerations
+- [ ] RTP range customized and firewall rules pending
+- [ ] Default extension passwords to be reset to strong values
 
-- Installed and configured Git.
-- Generated SSH key and linked to GitHub account.
-- Initialized Git repository in installation directory.
-- Resolved conflicts with remote repository during push.
-- Successfully pushed README.md with installation documentation and updates.
+### 🏗️ Next: Phase 1D - Testing
+- [ ] Register two softphones (Zoiper, Linphone) on extensions "1000" and "1001"
+- [ ] Test local call and verify audio with `fs_cli -x "show channels"`
+- [ ] Troubleshoot logs if needed
+
+## Current Project Phase
+- **Focus:** Standalone FreeSWITCH, without FusionPBX
+- Use this README to document step-by-step CLI, XML, and troubleshooting for FreeSWITCH
+
+---
+## Git Repository Update Instructions
+1. Stage edits: `git add README.md docs/ configs/`
+2. Commit: `git commit -m "docs: Phase 1 FreeSWITCH standalone installation and verification"`
+3. Push: `git push origin main`
+
+## Next Steps
+1. Edit XML configs for internal SIP profile and create extension users
+2. Add step-by-step CLI for users to register and call
+3. Continue documentation in `docs/installation/` and `docs/configuration/`
+
+> **Last Updated:** September 12, 2025
