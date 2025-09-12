@@ -1,0 +1,19 @@
+<!--
+File: /etc/freeswitch/sip_profiles/internal.xml
+
+Behavior & Purpose:
+- This file defines the internal Sofia SIP profile, handling all registrations and calls for local extensions/devices (using port 5060).
+- FreeSWITCH supports multiple profiles on different IPs/ports—"internal" is for phones/softphones you control.
+- Directories (users/extensions) referenced in /etc/freeswitch/directory/default/.
+- Security: Auth mandatory, codec/media/routing customizable; designed for secure, LAN use
+- Many <param ...> in this file control call features, NAT, codecs, media, registration, and TLS.
+- Make changes only if you understand them; reload configs after editing: fs_cli -x "reloadxml" && fs_cli -x "sofia profile internal restart"
+
+VS Code Permission Steps:
+sudo chown voip_sid:www-data /etc/freeswitch/sip_profiles/internal.xml
+sudo chmod 664 /etc/freeswitch/sip_profiles/internal.xml
+# For full edit rights to all configs:
+sudo chown -R voip_sid:www-data /etc/freeswitch/
+sudo find /etc/freeswitch/ -type f -exec chmod 664 {} \;
+sudo find /etc/freeswitch/ -type d -exec chmod 775 {} \;
+-->
